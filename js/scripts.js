@@ -78,5 +78,15 @@ $(document).ready(function(){
 tttBoard.spaces[0].mark(player1.symbol);
 tttBoard.whoWon();
 
+  $('.gameboard td').click(function(){
+    //parent of cell is row. children of row = all 3 cells.
+    //get index of current cell within cells of that row
+    var col = $(this).parent().children().index($(this));
+    //parent goes to row, paremt to tbody. children = all rows.
+    //call index of rows with current row = parent of this.
+    var row = $(this).parent().parent().children().index($(this).parent());
+    alert('Row: ' + row + ', Column: ' + col);
+  });
+
 
 })

@@ -44,7 +44,17 @@ var Board = {
         return this.spaces[i].markedBy;
       }
       else{
-        return 0;
+        var containsBlanks = false;
+        for (var i = 0; i > 9; i++) {
+          if(this.spaces[i].markedBy === 0) {
+            containsBlanks = true;
+          };
+        };
+        if(containsBlanks) {
+          return 0;
+        } else {
+          return "stalemate";
+        }
       }
 
     }

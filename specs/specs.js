@@ -49,6 +49,20 @@ describe("Board", function() {
       testBoard.spaces[2].mark("X");
       testBoard.whoWon().should.equal("X");
     });
+    it("will return stalemate if all spaces are full and there is no winning combination", function(){
+      var testBoard = Object.create(Board);
+      testBoard.initialize();
+      testBoard.spaces[0].mark("X");
+      testBoard.spaces[1].mark("O");
+      testBoard.spaces[2].mark("O");
+      testBoard.spaces[3].mark("O");
+      testBoard.spaces[4].mark("X");
+      testBoard.spaces[5].mark("X");
+      testBoard.spaces[6].mark("X");
+      testBoard.spaces[7].mark("X");
+      testBoard.spaces[8].mark("O");
+      testBoard.whoWon().should.equal("stalemate");
+    })
   });
 });
 

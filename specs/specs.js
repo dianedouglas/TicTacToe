@@ -29,23 +29,27 @@ describe("Space", function() {
       testSpace.markedBy.should.equal("X");
     });
   });
-
 });
 
-  // describe("create"); // you write the rest of this one!
+describe("Board", function() {
+  describe("initialize", function(){
+    it("creates 9 spaces when it is initialized", function(){
+      var testBoard = Object.create(Board);
+      testBoard.initialize();
+      testBoard.spaces[0].xCoordinate.should.equal(0);
+      testBoard.spaces[0].yCoordinate.should.equal(0);
+    });
+  });
+  describe("whoWon", function(){
+    it("will return an X if there is a row of three Xs", function(){
+      var testBoard = Object.create(Board);
+      testBoard.initialize();
+      testBoard.spaces[0].mark("X");
+      testBoard.spaces[1].mark("X");
+      testBoard.spaces[2].mark("X");
+      testBoard.whoWon().should.equal("X");
+    });
+  });
+});
 
-//   describe("markBy", function() {
-//     it("lets a player mark the space", function() {
-//       var testPlayer = Object.create(Player);
-//       testPlayer.initialize("X");
-//       var testSpace = Object.create(Space);
-//       testSpace.initialize(1, 2);
-//       testSpace.markBy(testPlayer);
-//       testSpace.markedBy.should.equal(testPlayer);
-//     });
-//   });
-// });
-
-// describe("Board", function() {
-//   it("creates 9 spaces when it is initialized"); // you write the rest!
-// });
+// describe("create"); // you write the rest of this one!

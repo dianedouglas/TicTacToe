@@ -19,6 +19,17 @@ var Space = {
   }
 }
 
+var Board = {
+  spaces : [],
+  initialize: function() {
+    for(var i = 0; i < 9; i++){
+      var currentSpace = Object.create(Space);
+      currentSpace.initialize((i % 3), (i / 3));
+      this.spaces[i] = currentSpace;
+    }
+  }
+}
+
 $(document).ready(function(){
   var player1 = Object.create(Player);
   var player2 = Object.create(Player);

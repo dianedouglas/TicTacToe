@@ -40,6 +40,7 @@ describe("Board", function() {
       testBoard.spaces[0].yCoordinate.should.equal(0);
     });
   });
+
   describe("whoWon", function(){
     it("will return an X if there is a row of three Xs", function(){
       var testBoard = Object.create(Board);
@@ -49,6 +50,7 @@ describe("Board", function() {
       testBoard.spaces[2].mark("X");
       testBoard.whoWon().should.equal("X");
     });
+
     it("will return stalemate if all spaces are full and there is no winning combination", function(){
       var testBoard = Object.create(Board);
       testBoard.initialize();
@@ -63,6 +65,13 @@ describe("Board", function() {
       testBoard.spaces[8].mark("O");
       testBoard.whoWon().should.equal("stalemate");
     })
+
+    it("will return 0 if the game is still going.", function(){
+      var testBoard = Object.create(Board);
+      testBoard.initialize();
+      // testBoard.spaces[0].mark("X");
+      testBoard.whoWon().should.equal(0);
+    });
   });
 });
 

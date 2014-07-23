@@ -45,11 +45,11 @@ var Board = {
       }
       else{
         var containsBlanks = false;
-        for (var i = 0; i > 9; i++) {
+        for (var i = 0; i < 9; i++) {
           if(this.spaces[i].markedBy === 0) {
             containsBlanks = true;
-          };
-        };
+          }
+        }
         if(containsBlanks) {
           return 0;
         } else {
@@ -58,20 +58,25 @@ var Board = {
       }
 
     }
-    //vertical combinations.
-
   }
 }
 
+var player1;
+var player2;
+var tttBoard;
+
 $(document).ready(function(){
-  var player1 = Object.create(Player);
-  var player2 = Object.create(Player);
+  //setup the game
+  player1 = Object.create(Player);
+  player2 = Object.create(Player);
   player1.initialize("X");
   player2.initialize("O");
+  tttBoard = Object.create(Board);
+  tttBoard.initialize();
 
-  // var space1 =Object.create(Space);
-  // space1.initialize(0,0);
-  // space1.mark(player1.symbol);
+//players take turns making moves.  every turn:
+tttBoard.spaces[0].mark(player1.symbol);
+tttBoard.whoWon();
 
 
 })

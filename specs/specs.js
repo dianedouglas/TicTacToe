@@ -33,7 +33,7 @@ describe("Space", function() {
 
 describe("Board", function() {
   describe("initialize", function(){
-    it("creates 9 spaces when it is initialized", function(){
+    it("creates 9 spaces and the turn property when it is initialized", function(){
       var testBoard = Object.create(Board);
       testBoard.initialize();
       testBoard.spaces[0].xCoordinate.should.equal(0);
@@ -69,7 +69,7 @@ describe("Board", function() {
     it("will return 0 if the game is still going.", function(){
       var testBoard = Object.create(Board);
       testBoard.initialize();
-      // testBoard.spaces[0].mark("X");
+      testBoard.spaces[0].mark("X");
       testBoard.whoWon().should.equal(0);
     });
   });

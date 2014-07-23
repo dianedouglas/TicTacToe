@@ -69,14 +69,13 @@ $(document).ready(function(){
   //setup the game
   player1 = Object.create(Player);
   player2 = Object.create(Player);
-  player1.initialize("X");
+  player1.initialize("X");//set from interface later
   player2.initialize("O");
+  var currentPlayer = player1;//set person who goes first
+  $('.whosTurnIsIt').addClass('.player1');
+
   tttBoard = Object.create(Board);
   tttBoard.initialize();
-
-//players take turns making moves.  every turn:
-tttBoard.spaces[0].mark(player1.symbol);
-tttBoard.whoWon();
 
   $('.gameboard td').click(function(){
     //parent of cell is row. children of row = all 3 cells.
@@ -85,7 +84,48 @@ tttBoard.whoWon();
     //parent goes to row, paremt to tbody. children = all rows.
     //call index of rows with current row = parent of this.
     var row = $(this).parent().parent().children().index($(this).parent());
-    alert('Row: ' + row + ', Column: ' + col);
+    if(row === 2){
+      if(col === 0){
+        tttBoard.spaces[0].mark(currentPlayer.symbol);
+      }else if(col === 1){
+        tttBoard.spaces[1].mark(currentPlayer.symbol);
+      }else if(col === 2){
+        tttBoard.spaces[2].mark(currentPlayer.symbol);
+      }
+    }else if(row === 1){
+      if(col === 0){
+        tttBoard.spaces[3].mark(currentPlayer.symbol);
+      }else if(col === 1){
+        tttBoard.spaces[4].mark(currentPlayer.symbol);
+      }else if(col === 2){
+        tttBoard.spaces[5].mark(currentPlayer.symbol);
+      }
+    }else if(row === 0){
+      if(col === 0){
+        tttBoard.spaces[6].mark(currentPlayer.symbol);
+      }else if(col === 1){
+        tttBoard.spaces[7].mark(currentPlayer.symbol);
+      }else if(col === 2){
+        tttBoard.spaces[8].mark(currentPlayer.symbol);
+      }
+    }
+    //set symbol on board
+    $(this).text(currentPlayer.symbol);
+    var winner = tttBoard.whoWon();
+    if(winner === 0){
+      if(currentPlayer === player1){
+        currentPlayer = player2;
+        $('.whosTurnIsIt').addClass('.player2');
+      } else {
+        currentPlayer = player1;
+        $('.whosTurnIsIt').addClass('.player1');
+      }
+    }else if(winner === currentPlayer.symbol){
+      $('#winner').text("You win!")
+    }else if(winner === "stalemate"){
+      $('#winner').text("Nobody wins!")
+    }
+
   });
 
 

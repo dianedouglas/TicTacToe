@@ -27,6 +27,29 @@ var Board = {
       currentSpace.initialize((i % 3), (i / 3));
       this.spaces[i] = currentSpace;
     }
+  },
+  whoWon: function(){
+    //check horizontal combinations.
+    for(var i = 0; i < 3; i++){
+      if(this.spaces[i].markedBy === this.spaces[i+1].markedBy && this.spaces[i+1].markedBy === this.spaces[i+2].markedBy && this.spaces[i].markedBy !== 0){
+        return this.spaces[i].markedBy;
+      }
+      else if(this.spaces[i].markedBy === this.spaces[i+3].markedBy && this.spaces[i+3].markedBy === this.spaces[i+6] && this.spaces[i].markedBy !== 0){
+        return this.spaces[i].markedBy;
+      }
+      else if(this.spaces[i].markedBy === this.spaces[i+2].markedBy && this.spaces[i+2].markedBy === this.spaces[i+4] && this.spaces[i].markedBy !== 0){
+        return this.spaces[i].markedBy;
+      }
+      else if(this.spaces[i].markedBy === this.spaces[i+4].markedBy && this.spaces[i+4].markedBy === this.spaces[i+8] && this.spaces[i].markedBy !== 0){
+        return this.spaces[i].markedBy;
+      }
+      else{
+        return 0;
+      }
+
+    }
+    //vertical combinations.
+
   }
 }
 

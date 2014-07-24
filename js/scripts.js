@@ -29,34 +29,30 @@ var Board = {
     }
   },
   whoWon: function(){
-    //check horizontal combinations.
-    for(var i = 0; i < 3; i++){
-      if(this.spaces[i].markedBy === this.spaces[i+1].markedBy && this.spaces[i+1].markedBy === this.spaces[i+2].markedBy && this.spaces[i].markedBy !== 0){
+    for(var i = 0; i < 9; i+=3){
+      if(((this.spaces[i].markedBy === this.spaces[i+1].markedBy) && (this.spaces[i+1].markedBy === this.spaces[i+2].markedBy)) && (this.spaces[i].markedBy !== 0)){
         return this.spaces[i].markedBy;
       }
-      else if(this.spaces[i].markedBy === this.spaces[i+3].markedBy && this.spaces[i+3].markedBy === this.spaces[i+6] && this.spaces[i].markedBy !== 0){
-        return this.spaces[i].markedBy;
+      else if(((this.spaces[i/3].markedBy === this.spaces[i/3+3].markedBy) && (this.spaces[i/3+3].markedBy === this.spaces[i/3+6].markedBy)) && (this.spaces[i/3].markedBy !== 0)){
+        return this.spaces[i/3].markedBy;
       }
-      else if(this.spaces[i].markedBy === this.spaces[i+2].markedBy && this.spaces[i+2].markedBy === this.spaces[i+4] && this.spaces[i].markedBy !== 0){
-        return this.spaces[i].markedBy;
+      else if(((this.spaces[2].markedBy === this.spaces[4].markedBy) && (this.spaces[4].markedBy === this.spaces[6].markedBy)) && (this.spaces[2].markedBy !== 0)){
+        return this.spaces[2].markedBy;
       }
-      else if(this.spaces[i].markedBy === this.spaces[i+4].markedBy && this.spaces[i+4].markedBy === this.spaces[i+8] && this.spaces[i].markedBy !== 0){
-        return this.spaces[i].markedBy;
+      else if(((this.spaces[0].markedBy === this.spaces[4].markedBy) && (this.spaces[4].markedBy === this.spaces[8].markedBy)) && (this.spaces[0].markedBy !== 0)){
+        return this.spaces[0].markedBy;
       }
-      else{
-        var containsBlanks = false;
-        for (var i = 0; i < 9; i++) {
-          if(this.spaces[i].markedBy === 0) {
-            containsBlanks = true;
-          }
-        }
-        if(containsBlanks) {
-          return 0;
-        } else {
-          return "stalemate";
-        }
+    }
+    var containsBlanks = false;
+    for (var i = 0; i < 9; i++) {
+      if(this.spaces[i].markedBy === 0) {
+        containsBlanks = true;
       }
-
+    }
+    if(containsBlanks) {
+      return 0;
+    } else {
+      return "stalemate";
     }
   }
 }
@@ -72,7 +68,7 @@ $(document).ready(function(){
   player1.initialize("X");//set from interface later
   player2.initialize("O");
   var currentPlayer = player1;//set person who goes first
-  $('.whosTurnIsIt').addClass('.player1');
+  $('.whosTurnIsIt').addClass('player1');
 
   tttBoard = Object.create(Board);
   tttBoard.initialize();
@@ -84,6 +80,7 @@ $(document).ready(function(){
     //parent goes to row, paremt to tbody. children = all rows.
     //call index of rows with current row = parent of this.
     var row = $(this).parent().parent().children().index($(this).parent());
+
     if(row === 2){
       if(col === 0){
         tttBoard.spaces[0].mark(currentPlayer.symbol);
@@ -115,10 +112,12 @@ $(document).ready(function(){
     if(winner === 0){
       if(currentPlayer === player1){
         currentPlayer = player2;
-        $('.whosTurnIsIt').addClass('.player2');
+        $('.whosTurnIsIt').addClass('player2');
+        $('.whosTurnIsIt').removeClass('player1');
       } else {
         currentPlayer = player1;
-        $('.whosTurnIsIt').addClass('.player1');
+        $('.whosTurnIsIt').addClass('player1');
+        $('.whosTurnIsIt').removeClass('player2');
       }
     }else if(winner === currentPlayer.symbol){
       $('#winner').text("You win!")

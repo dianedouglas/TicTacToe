@@ -5,10 +5,28 @@
   font-size: 30px;
 }
 
+.gameboard img {
+  margin: auto;
+}
+
+.gameboard {
+  margin: auto;
+  text-align: center;
+  background-color: white;
+}
+
 .player1 {
   background-color: #00FFFF;
+  border: 3px solid black;
+  width: 56%;
+  margin: auto;
+  padding: 20px;
 }
 
 .player2 {
   background-color: #FFFF00;
+  border: 3px solid black;
+  width: 56%;
+  margin: auto;
+  padding: 20px;
 }

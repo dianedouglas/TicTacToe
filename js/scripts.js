@@ -1,7 +1,9 @@
 var Player = {
   symbol: "",
-  initialize: function(XO){
+  name: "",
+  initialize: function(XO, name){
     this.symbol = XO;
+    this.name = name;
   }
 }
 
@@ -70,9 +72,10 @@ $(document).ready(function(){
   //setup the game
   player1 = Object.create(Player);
   player2 = Object.create(Player);
-  player1.initialize("X");//set from interface later
-  player2.initialize("O");
+  player1.initialize("X", 'Player 1');//set from interface later
+  player2.initialize("O", 'Player 2');
   var currentPlayer = player1;//set person who goes first
+  $('.player-name').text(currentPlayer.name);
   $('.whosTurnIsIt').addClass('player1');
 
   tttBoard = Object.create(Board);
@@ -126,10 +129,11 @@ $(document).ready(function(){
           $('.whosTurnIsIt').addClass('player1');
           $('.whosTurnIsIt').removeClass('player2');
         }
+        $('.player-name').text(currentPlayer.name);
       }else if(winner === currentPlayer.symbol){
-        $('#winner').text("You win!")
+        $('#winner').text("You win!");
       }else if(winner === "stalemate"){
-        $('#winner').text("Nobody wins!")
+        $('#winner').text("Nobody wins!");
       }
     }else{
 

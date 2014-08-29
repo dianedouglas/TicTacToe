@@ -46,3 +46,7 @@
 .whosTurnIsIt.winner {
   border-top-width: 0px;
 }
+
+.winner {
+  display: none;
+}

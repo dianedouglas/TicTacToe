@@ -84,6 +84,7 @@ $(document).ready(function(){
     tttBoard.initialize();
     $('.setup-screen').hide();
     $('.whosTurnIsIt').slideDown('slow');
+    $('.winner').hide();
     event.preventDefault();
   })
 
@@ -138,13 +139,13 @@ $(document).ready(function(){
         $('.player-name').text(currentPlayer.name);
       }else if(winner === currentPlayer.symbol){
         $('.whos-turn').text("");
-        $('.winner').text(currentPlayer.name + " wins!");
+        $('.winner .gametext').text(currentPlayer.name + " Wins!");
+        $('.winner').slideDown('slow');
       }else if(winner === "stalemate"){
         $('.whos-turn').text("");
-        $('.winner').text("Nobody wins!");
+        $('.winner .gametext').text("Nobody Wins!");
+        $('.winner').slideDown('slow');
       }
-    }else{
-
     }
   });
 })

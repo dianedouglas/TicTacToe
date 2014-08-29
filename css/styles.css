@@ -5,6 +5,10 @@
   font-size: 30px;
 }
 
+.setup-screen {
+
+}
+
 .whosTurnIsIt {
   display: none;
 }
@@ -37,4 +41,8 @@
 
 .gametext {
   text-align: center;
+}
+
+.whosTurnIsIt.winner {
+  border-top-width: 0px;
 }

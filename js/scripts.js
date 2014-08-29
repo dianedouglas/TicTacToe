@@ -137,9 +137,11 @@ $(document).ready(function(){
         }
         $('.player-name').text(currentPlayer.name);
       }else if(winner === currentPlayer.symbol){
-        $('#winner').text("You win!");
+        $('.whos-turn').text("");
+        $('.winner').text(currentPlayer.name + " wins!");
       }else if(winner === "stalemate"){
-        $('#winner').text("Nobody wins!");
+        $('.whos-turn').text("");
+        $('.winner').text("Nobody wins!");
       }
     }else{
 

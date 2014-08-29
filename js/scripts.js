@@ -67,19 +67,25 @@ var Board = {
 var player1;
 var player2;
 var tttBoard;
+var currentPlayer;
 
 $(document).ready(function(){
-  //setup the game
-  player1 = Object.create(Player);
-  player2 = Object.create(Player);
-  player1.initialize("X", 'Player 1');//set from interface later
-  player2.initialize("O", 'Player 2');
-  var currentPlayer = player1;//set person who goes first
-  $('.player-name').text(currentPlayer.name);
-  $('.whosTurnIsIt').addClass('player1');
+  $('#player-info').submit(function(event) {
+    //setup the game
+    player1 = Object.create(Player);
+    player2 = Object.create(Player);
+    player1.initialize("X", $('#player1-name').val());//set from interface later
+    player2.initialize("O", $('#player2-name').val());
+    currentPlayer = player1;//set person who goes first
+    $('.player-name').text(currentPlayer.name);
+    $('.whosTurnIsIt').addClass('player1');
 
-  tttBoard = Object.create(Board);
-  tttBoard.initialize();
+    tttBoard = Object.create(Board);
+    tttBoard.initialize();
+    $('.setup-screen').hide();
+    $('.whosTurnIsIt').slideDown('slow');
+    event.preventDefault();
+  })
 
   $('.gameboard td').click(function(){
     //parent of cell is row. children of row = all 3 cells.

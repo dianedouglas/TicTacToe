@@ -5,6 +5,10 @@
   font-size: 30px;
 }
 
+.whosTurnIsIt {
+  display: none;
+}
+
 .gameboard img {
   margin: auto;
 }

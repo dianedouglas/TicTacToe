@@ -15,7 +15,12 @@ var Space = {
     this.markedBy = 0;
   },
   mark: function(XO) {
-    this.markedBy = XO;
+    if(this.markedBy){
+      return "already_marked";
+    }else{
+      this.markedBy = XO;
+      return true;
+    }
   }
 }
 
@@ -81,51 +86,53 @@ $(document).ready(function(){
     //call index of rows with current row = parent of this.
     var row = $(this).parent().parent().children().index($(this).parent());
 
+    var marked_result;
     if(row === 2){
       if(col === 0){
-        tttBoard.spaces[0].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[0].mark(currentPlayer.symbol);
       }else if(col === 1){
-        tttBoard.spaces[1].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[1].mark(currentPlayer.symbol);
       }else if(col === 2){
-        tttBoard.spaces[2].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[2].mark(currentPlayer.symbol);
       }
     }else if(row === 1){
       if(col === 0){
-        tttBoard.spaces[3].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[3].mark(currentPlayer.symbol);
       }else if(col === 1){
-        tttBoard.spaces[4].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[4].mark(currentPlayer.symbol);
       }else if(col === 2){
-        tttBoard.spaces[5].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[5].mark(currentPlayer.symbol);
       }
     }else if(row === 0){
       if(col === 0){
-        tttBoard.spaces[6].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[6].mark(currentPlayer.symbol);
       }else if(col === 1){
-        tttBoard.spaces[7].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[7].mark(currentPlayer.symbol);
       }else if(col === 2){
-        tttBoard.spaces[8].mark(currentPlayer.symbol);
+        marked_result = tttBoard.spaces[8].mark(currentPlayer.symbol);
       }
     }
     //set symbol on board
-    $(this).text(currentPlayer.symbol);
-    var winner = tttBoard.whoWon();
-    if(winner === 0){
-      if(currentPlayer === player1){
-        currentPlayer = player2;
-        $('.whosTurnIsIt').addClass('player2');
-        $('.whosTurnIsIt').removeClass('player1');
-      } else {
-        currentPlayer = player1;
-        $('.whosTurnIsIt').addClass('player1');
-        $('.whosTurnIsIt').removeClass('player2');
+    if(marked_result !== "already_marked"){
+      $(this).text(currentPlayer.symbol);
+      var winner = tttBoard.whoWon();
+      if(winner === 0){
+        if(currentPlayer === player1){
+          currentPlayer = player2;
+          $('.whosTurnIsIt').addClass('player2');
+          $('.whosTurnIsIt').removeClass('player1');
+        } else {
+          currentPlayer = player1;
+          $('.whosTurnIsIt').addClass('player1');
+          $('.whosTurnIsIt').removeClass('player2');
+        }
+      }else if(winner === currentPlayer.symbol){
+        $('#winner').text("You win!")
+      }else if(winner === "stalemate"){
+        $('#winner').text("Nobody wins!")
       }
-    }else if(winner === currentPlayer.symbol){
-      $('#winner').text("You win!")
-    }else if(winner === "stalemate"){
-      $('#winner').text("Nobody wins!")
+    }else{
+
     }
-
   });
-
-
 })

@@ -46,3 +46,22 @@
 .whosTurnIsIt.winner {
   border-top-width: 0px;
 }
+
+.scoreboard {
+  display: none;
+  border-top-width: 0px;
+  background-color: purple;
+  border: 3px solid black;
+  width: 75%;
+  margin: auto;
+  padding: 20px;
+  color: white;
+  height: 180px;
+}
+
+#play-end {
+  width: 25%;
+  margin: auto;
+}
+
+

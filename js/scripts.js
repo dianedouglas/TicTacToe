@@ -68,6 +68,8 @@ var player1;
 var player2;
 var tttBoard;
 var currentPlayer;
+var scoreboard = {};
+scoreboard["stalemates"] = 0;
 
 $(document).ready(function(){
   $('#player-info').submit(function(event) {
@@ -76,6 +78,8 @@ $(document).ready(function(){
     player2 = Object.create(Player);
     player1.initialize("X", $('#player1-name').val());//set from interface later
     player2.initialize("O", $('#player2-name').val());
+    scoreboard[player1.name] = 0;
+    scoreboard[player2.name] = 0;
     currentPlayer = player1;//set person who goes first
     $('.player-name').text(currentPlayer.name);
     $('.whosTurnIsIt').addClass('player1');
@@ -141,11 +145,23 @@ $(document).ready(function(){
         $('.whos-turn').text("");
         $('.winner .gametext').text(currentPlayer.name + " Wins!");
         $('.winner').slideDown('slow');
+        scoreboard[currentPlayer.name] += 1;
+        display_scores();
       }else if(winner === "stalemate"){
         $('.whos-turn').text("");
         $('.winner .gametext').text("Nobody Wins!");
         $('.winner').slideDown('slow');
+        scoreboard["stalemates"] += 1;
+        display_scores();
       }
     }
   });
 })
+
+
+var display_scores = function(){
+  $('.scoreboard').slideDown('slow');
+  $('.player1-score').text(player1.name + ": " + scoreboard[player1.name]);
+  $('.player2-score').text(player2.name + ": " + scoreboard[player2.name]);
+  $('.stalemate-score').text("Stalemates: " + scoreboard["stalemates"]);
+}

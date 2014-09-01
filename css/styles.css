@@ -5,8 +5,12 @@
   font-size: 30px;
 }
 
-.setup-screen {
+body {
+  background-color: #996AD6;
+}
 
+.setup-screen {
+  color: white;
 }
 
 .whosTurnIsIt {
@@ -24,7 +28,7 @@
 }
 
 .player1 {
-  background-color: #00FFFF;
+  background-color: #D460CF;
   border: 3px solid black;
   width: 56%;
   margin: auto;
@@ -32,7 +36,7 @@
 }
 
 .player2 {
-  background-color: #FFFF00;
+  background-color: #7375D8;
   border: 3px solid black;
   width: 56%;
   margin: auto;
@@ -41,6 +45,11 @@
 
 .gametext {
   text-align: center;
+  color: white;
+}
+
+.gameheader{
+  color: white;
 }
 
 .whosTurnIsIt.winner {
@@ -50,13 +59,13 @@
 .scoreboard {
   display: none;
   border-top-width: 0px;
-  background-color: purple;
+  background-color: #530FAD;
   border: 3px solid black;
   width: 75%;
   margin: auto;
   padding: 20px;
   color: white;
-  height: 180px;
+  height: 160px;
 }
 
 #play-end {

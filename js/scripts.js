@@ -135,10 +135,12 @@ $(document).ready(function(){
           currentPlayer = player2;
           $('.whosTurnIsIt').addClass('player2');
           $('.whosTurnIsIt').removeClass('player1');
+          $('.scoreboard').addClass('player2');
         } else {
           currentPlayer = player1;
           $('.whosTurnIsIt').addClass('player1');
           $('.whosTurnIsIt').removeClass('player2');
+          $('.scoreboard').addClass('player1');
         }
         $('.player-name').text(currentPlayer.name);
       }else if(winner === currentPlayer.symbol){

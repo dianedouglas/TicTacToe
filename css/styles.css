@@ -6,18 +6,18 @@
 }
 
 body {
-  background-color: #996AD6;
+  background-color: #b9e9fb;
 }
 
-.setup-screen {
-  color: white;
+.gametext.gameheader {
+  color: black;
 }
 
 .whosTurnIsIt {
   display: none;
 }
 
-.gameboard img {
+.gameboard {
   margin: auto;
 }
 
@@ -48,20 +48,17 @@ body {
   color: white;
 }
 
-.gameheader{
-  color: white;
-}
-
 .whosTurnIsIt.winner {
   border-top-width: 0px;
+  border-bottom-width: 0px;
 }
 
 .scoreboard {
   display: none;
   border-top-width: 0px;
-  background-color: #530FAD;
+  background-color: #996AD6;
   border: 3px solid black;
-  width: 75%;
+  width: 56%;
   margin: auto;
   padding: 20px;
   color: white;

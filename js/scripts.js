@@ -102,7 +102,6 @@ $(document).ready(function(){
     $('.whos-turn').show();
   });
 
-
   $('.gameboard td').click(function(){
     //parent of cell is row. children of row = all 3 cells.
     //get index of current cell within cells of that row
@@ -112,10 +111,8 @@ $(document).ready(function(){
     var row = $(this).parent().parent().children().index($(this).parent());
     var marked_result = mark_board(col, row);
 
-      // alert('winner ' + winner + ' marked_result ' + marked_result);
     if(marked_result !== "already_marked" && winner === 0){
       winner = tttBoard.whoWon();
-      // alert('winner' + winner);
       $(this).text(currentPlayer.symbol);
       change_turns(winner);
     }

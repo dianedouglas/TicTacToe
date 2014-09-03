@@ -68,6 +68,7 @@ var player1;
 var player2;
 var tttBoard;
 var currentPlayer;
+var winner = 0;
 var scoreboard = {};
 scoreboard["stalemates"] = 0;
 
@@ -92,6 +93,16 @@ $(document).ready(function(){
     event.preventDefault();
   })
 
+  $('#play-again').click(function(event) {
+    clear_board();
+    winner = 0;
+    change_turns(0);
+    $('.winner').hide();
+    $('.scoreboard').hide();
+    $('.whos-turn').show();
+  });
+
+
   $('.gameboard td').click(function(){
     //parent of cell is row. children of row = all 3 cells.
     //get index of current cell within cells of that row
@@ -99,67 +110,81 @@ $(document).ready(function(){
     //parent goes to row, paremt to tbody. children = all rows.
     //call index of rows with current row = parent of this.
     var row = $(this).parent().parent().children().index($(this).parent());
+    var marked_result = mark_board(col, row);
 
-    var marked_result;
-    if(row === 2){
-      if(col === 0){
-        marked_result = tttBoard.spaces[0].mark(currentPlayer.symbol);
-      }else if(col === 1){
-        marked_result = tttBoard.spaces[1].mark(currentPlayer.symbol);
-      }else if(col === 2){
-        marked_result = tttBoard.spaces[2].mark(currentPlayer.symbol);
-      }
-    }else if(row === 1){
-      if(col === 0){
-        marked_result = tttBoard.spaces[3].mark(currentPlayer.symbol);
-      }else if(col === 1){
-        marked_result = tttBoard.spaces[4].mark(currentPlayer.symbol);
-      }else if(col === 2){
-        marked_result = tttBoard.spaces[5].mark(currentPlayer.symbol);
-      }
-    }else if(row === 0){
-      if(col === 0){
-        marked_result = tttBoard.spaces[6].mark(currentPlayer.symbol);
-      }else if(col === 1){
-        marked_result = tttBoard.spaces[7].mark(currentPlayer.symbol);
-      }else if(col === 2){
-        marked_result = tttBoard.spaces[8].mark(currentPlayer.symbol);
-      }
-    }
-    //set symbol on board
-    if(marked_result !== "already_marked"){
+      // alert('winner ' + winner + ' marked_result ' + marked_result);
+    if(marked_result !== "already_marked" && winner === 0){
+      winner = tttBoard.whoWon();
+      // alert('winner' + winner);
       $(this).text(currentPlayer.symbol);
-      var winner = tttBoard.whoWon();
-      if(winner === 0){
-        if(currentPlayer === player1){
-          currentPlayer = player2;
-          $('.whosTurnIsIt').addClass('player2');
-          $('.whosTurnIsIt').removeClass('player1');
-          $('.scoreboard').addClass('player2');
-        } else {
-          currentPlayer = player1;
-          $('.whosTurnIsIt').addClass('player1');
-          $('.whosTurnIsIt').removeClass('player2');
-          $('.scoreboard').addClass('player1');
-        }
-        $('.player-name').text(currentPlayer.name);
-      }else if(winner === currentPlayer.symbol){
-        $('.whos-turn').text("");
-        $('.winner .gametext').text(currentPlayer.name + " Wins!");
-        $('.winner').slideDown('slow');
-        scoreboard[currentPlayer.name] += 1;
-        display_scores();
-      }else if(winner === "stalemate"){
-        $('.whos-turn').text("");
-        $('.winner .gametext').text("Nobody Wins!");
-        $('.winner').slideDown('slow');
-        scoreboard["stalemates"] += 1;
-        display_scores();
-      }
+      change_turns(winner);
     }
   });
 })
 
+var clear_board = function(){
+  for (var i = 0; i < 9; i++) {
+    tttBoard.spaces[i].markedBy = 0;
+  };
+  $('td').text("");
+}
+
+var mark_board = function(col, row){
+  if(row === 2){
+    if(col === 0){
+      return tttBoard.spaces[0].mark(currentPlayer.symbol);
+    }else if(col === 1){
+      return tttBoard.spaces[1].mark(currentPlayer.symbol);
+    }else if(col === 2){
+      return tttBoard.spaces[2].mark(currentPlayer.symbol);
+    }
+  }else if(row === 1){
+    if(col === 0){
+      return tttBoard.spaces[3].mark(currentPlayer.symbol);
+    }else if(col === 1){
+      return tttBoard.spaces[4].mark(currentPlayer.symbol);
+    }else if(col === 2){
+      return tttBoard.spaces[5].mark(currentPlayer.symbol);
+    }
+  }else if(row === 0){
+    if(col === 0){
+      return tttBoard.spaces[6].mark(currentPlayer.symbol);
+    }else if(col === 1){
+      return tttBoard.spaces[7].mark(currentPlayer.symbol);
+    }else if(col === 2){
+      return tttBoard.spaces[8].mark(currentPlayer.symbol);
+    }
+  }
+}
+
+var change_turns = function(winner){
+  if(winner === 0){
+    if(currentPlayer === player1){
+      currentPlayer = player2;
+      $('.whosTurnIsIt').addClass('player2');
+      $('.whosTurnIsIt').removeClass('player1');
+      $('.scoreboard').addClass('player2');
+    } else {
+      currentPlayer = player1;
+      $('.whosTurnIsIt').addClass('player1');
+      $('.whosTurnIsIt').removeClass('player2');
+      $('.scoreboard').addClass('player1');
+    }
+    $('.player-name').text(currentPlayer.name);
+  }else if(winner === currentPlayer.symbol){
+    $('.whos-turn').hide();
+    $('.winner .gametext').text(currentPlayer.name + " Wins!");
+    $('.winner').slideDown('slow');
+    scoreboard[currentPlayer.name] += 1;
+    display_scores();
+  }else if(winner === "stalemate"){
+    $('.whos-turn').hide();
+    $('.winner .gametext').text("Nobody Wins!");
+    $('.winner').slideDown('slow');
+    scoreboard["stalemates"] += 1;
+    display_scores();
+  }
+}
 
 var display_scores = function(){
   $('.scoreboard').slideDown('slow');

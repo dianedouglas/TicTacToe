@@ -1,4 +1,4 @@
-****Pastel Colored Tic-Tac-Toe!****
+***Pastel Colored Tic-Tac-Toe!***
 
 **By Diane Douglas and Amoreena Hagedorn**
 
@@ -6,4 +6,4 @@
 
 *It lets you enter your names, keeps track of your scores, and displays cheerful colors.*
 
-***Have fun! ----->>> [Go Play](http://playtictactoe.site44.com/).***
+**Have fun! ----->>> [Go Play](http://playtictactoe.site44.com/).**

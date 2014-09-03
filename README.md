@@ -1,2 +1,9 @@
-Hello Class,
-This is Diane Douglas and Amoreena Hagedorn. We are creating a website to play the game tic tac toe. Date: July 23, 2014. All rights reserved.
+Pastel Colored Tic-Tac-Toe!
+
+By Diane Douglas and Amoreena Hagedorn
+
+**An object-oriented javascript page which let 2 people play tic-tac-toe.**
+
+**It lets you enter your names, keeps track of your scores, and displays cheerful colors.**
+
+**Have fun! ----->>> [Go Play](http://playtictactoe.site44.com/).**

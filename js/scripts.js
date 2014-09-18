@@ -187,5 +187,5 @@ var display_scores = function(){
   $('.scoreboard').slideDown('slow');
   $('.player1-score').text(player1.name + ": " + scoreboard[player1.name]);
   $('.player2-score').text(player2.name + ": " + scoreboard[player2.name]);
-  $('.stalemate-score').text("Stalemates: " + scoreboard["stalemates"]);
+  $('.stalemate-score').text("No One: " + scoreboard["stalemates"]);
 }

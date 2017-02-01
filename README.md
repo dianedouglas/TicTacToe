@@ -6,7 +6,7 @@
 
 ## Description
 
-#### [Play it!](https:dianedouglas.github.io/TicTacToe)
+#### [Play it!](https://dianedouglas.github.io/TicTacToe/)
 
 This is a game Amoreena Hagedorn and I prototyped during our time as students at Epicodus as an exercise in Test Driven Development and Object Oriented programming. We started by writing out specs describing the behavior of the game and then made each one pass as a way to lead us through the project, increasing in complexity one goal at a time. 
 
